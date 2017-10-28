@@ -1,20 +1,22 @@
 import serial
+import time
 
-class Radio(Object):
-	def __init__(port, baud):
+class Radio:
+	def __init__(self, port, baud):
 		self.port = port
 		self.baud = baud
-		ser = serial.Serial(port, baud)
-		time.sleep() # give time to initialize
+		self.ser = serial.Serial(port, baud)
+		time.sleep(2) # give time to initialize
 
-	def listen():
-		return ser.readline() #read(num) for bytes. timeout?
+	def listen(self):
+		return self.ser.readline() #read(num) for bytes. timeout?
 
-	def send(message):
-		ser.write(message)
+	def send(self, message):
+		print "radio is sending: ", message
+		self.ser.write(message)
 
 
-if __name == "__main__":
+if __name__ == "__main__":
 	port = '/dev/cu.usbmodem1421'
 	baud = 9600
 	radio = Radio(port, baud)
