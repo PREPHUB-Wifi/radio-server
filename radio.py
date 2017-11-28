@@ -12,11 +12,13 @@ class Radio:
 		return self.ser.readline() #read(num) for bytes. timeout?
 
 	def send(self, message):
-		print "radio is sending: ", message
+		print("radio is sending: ", message)
 		self.ser.write(message)
 
 
 if __name__ == "__main__":
 	port = '/dev/cu.usbmodem1421'
 	baud = 9600
-	radio = Radio(port, baud)
+	radio = Radio(port, baud) 
+	while True:
+		print(radio.listen())
